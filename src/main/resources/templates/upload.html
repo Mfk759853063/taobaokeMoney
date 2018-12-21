@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+    <html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>上传淘宝客结算Excel</title>
+</head>
+<body>
+    <div class="center">
+        <div class="title">
+            <h1>自动结算淘宝客收入系统</h1>
+        </div>
+        <div class="form">
+            <form class="form1" method="POST" action="/v1/upload" enctype="multipart/form-data">
+                <div>
+                    <input class="input-file" type = "file" name = "file">
+                </div>
+                <div>
+                    <input class="input-button" type = "submit" value = "上传">
+                </div>
+            </form>
+        </div>
+
+    </div>
+</body>
+</html>
+
+<style>
+    .center {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+    .form {
+        border: 3px solid #eeeeee;
+    }
+    .form1 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .input-file {
+        margin-top: 20px;
+        text-align: center;
+        margin-left: 25%;
+        margin-bottom: 20px;
+    }
+
+    .input-button {
+        margin-bottom: 20px;
+    }
+</style>

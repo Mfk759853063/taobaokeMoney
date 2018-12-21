@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:tr="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>clac result</title>
+</head>
+<body>
+    <div class="result">
+        <div class="message" th:if="${message}"></div>
+        <div>
+            <span>最早时间</span>
+            <span th:text="${map['beforeDate']}"></span>
+        </div>
+        <div>
+            <span>最晚时间</span>
+            <span th:text="${map['lastDate']}"></span>
+        </div>
+        <div >
+            <table border="1">
+                <tr>
+                    <th>广告位名称</th>
+                    <th>广告位结算金额</th>
+                </tr>
+                <tr th:each="key : ${map['adMap'].keySet()}">
+                    <td th:text="${key}"></td>
+                    <td th:text="${#numbers.formatDecimal(map['adMap'].get(key), 0,2)}"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>
+
+<style>
+    .result {
+        margin: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+</style>

@@ -24,10 +24,8 @@ import java.util.*;
 public class OperationExcel {
 
     private static final String FILE_NAME = "classpath:datafile/test.xls";
-    private static  final String ZTF_AD = "65802000112";
-    private static  final String ZC_AD = "63841000166";
 
-    public static void readExcel(String path) {
+    public static Map readExcel(String path) {
         if (path == null) {
             path = FILE_NAME;
         }
@@ -62,9 +60,9 @@ public class OperationExcel {
                 if (cell.getCellTypeEnum() == CellType.NUMERIC) {
                     rowMap.put("money", cell.getNumericCellValue());
                 }
-                cell = currentRow.getCell(29);
+                cell = currentRow.getCell(30);
                 if (cell.getCellTypeEnum() == CellType.STRING) {
-                    rowMap.put("adId", cell.getStringCellValue());
+                    rowMap.put("adName", cell.getStringCellValue());
                 }
                 list.add(rowMap);
             }
@@ -91,14 +89,14 @@ public class OperationExcel {
                     beforDate = beforDate.after(date)? date : beforDate;
                 }
 
-                if (adMap.get(map.get("adId").toString()) == null) {
+                if (adMap.get(map.get("adName").toString()) == null) {
                     Double money = (Double) map.get("money");
-                    adMap.put(map.get("adId").toString(),money * 0.9);
+                    adMap.put(map.get("adName").toString(),money * 0.9);
                 } else {
                     Double money = (Double) map.get("money") *0.9;
-                    Double allMoney = (Double)adMap.get(map.get("adId").toString());
+                    Double allMoney = (Double)adMap.get(map.get("adName").toString());
                     allMoney = allMoney + money;
-                    adMap.put(map.get("adId").toString(),allMoney);
+                    adMap.put(map.get("adName").toString(),allMoney);
                 }
             }
         }
@@ -111,6 +109,10 @@ public class OperationExcel {
             System.out.println("********************" + key + "**********************");
             System.out.println("********************" + adMap.get(key) + "**********************");
         }
-
+        Map<String,Object> resultMap = new HashMap<String,Object>();
+        resultMap.put("adMap", adMap);
+        resultMap.put("beforeDate", format.format(beforDate));
+        resultMap.put("lastDate", format.format(lastDate));
+        return resultMap;
     }
 }
