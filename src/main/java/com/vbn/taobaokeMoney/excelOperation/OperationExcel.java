@@ -46,7 +46,7 @@ public class OperationExcel {
                 if (cell.getCellTypeEnum() == CellType.STRING) {
                     rowMap.put("title", cell.getStringCellValue());
                 }
-                cell = currentRow.getCell(0);
+                cell = currentRow.getCell(16);
                 if (cell.getCellTypeEnum() == CellType.STRING) {
                     String dateStr = cell.getStringCellValue();
                     try {
